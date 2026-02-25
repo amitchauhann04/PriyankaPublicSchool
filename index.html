@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Priyanka Public school – Official Website</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:800&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #004080;
@@ -421,6 +422,100 @@
       }
     }
 
+    /* Poster Popup Styles */
+    .poster-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .poster-overlay.active {
+      display: flex;
+    }
+
+    .poster-content {
+      position: relative;
+      background: white;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .poster-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .poster-close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+    .poster-message {
+      padding: 32px 18px 12px 18px;
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #d32f2f;
+      text-align: center;
+      background: linear-gradient(90deg, #fffbe6 60%, #ffe0e0 100%);
+      border-bottom: 1px solid #ffe0e0;
+      animation: posterTextFadeIn 1.2s cubic-bezier(0.4,0,0.2,1);
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #fffbe6, 0 1px 2px #ffe0e0;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+
+    .poster-subtext {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #444;
+      margin-top: 8px;
+      margin-bottom: 12px;
+      text-align: center;
+      animation: posterTextFadeIn 1.5s 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    }
+
+    @keyframes posterTextFadeIn {
+      0% { opacity: 0; transform: translateY(-30px) scale(0.95); }
+      60% { opacity: 1; transform: translateY(0px) scale(1.05); }
+      100% { opacity: 1; transform: translateY(0px) scale(1); }
+    }
+      border-radius: 50%;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.3s ease, transform 0.2s ease;
+      z-index: 1000;
+    }
+
+    .poster-close-btn:hover {
+      background: rgba(0, 0, 0, 0.9);
+      transform: scale(1.1);
+    }
+
+    .poster-close-btn:active {
+      transform: scale(0.95);
+    }
+
     @media (max-width: 960px) {
       .hero {
         grid-template-columns: minmax(0, 1fr);
@@ -472,6 +567,20 @@
   </style>
 </head>
 <body>
+
+<!-- Poster Popup -->
+<div id="posterOverlay" class="poster-overlay">
+  <div class="poster-content">
+    <button class="poster-close-btn" onclick="closePosterPopup()">&times;</button>
+    <div class="poster-message">
+      Website Under Maintenance
+    </div>
+    <div class="poster-subtext">
+      We will Back Soon with a New Look and Updated
+    </div>
+    <img src="coding.gif" alt="Coding Animation" class="poster-image" style="max-height:260px; margin-bottom:18px; border-radius:12px; box-shadow:0 4px 24px #d32f2f33;" />
+  </div>
+</div>
 
 <header>
   <div class="brand-row">
@@ -728,6 +837,46 @@
       }
     });
   });
+</script>
+
+<!-- Poster Popup Script -->
+<script>
+  function openPosterPopup() {
+    const posterOverlay = document.getElementById('posterOverlay');
+    if (posterOverlay) {
+      posterOverlay.classList.add('active');
+    }
+  }
+
+  function closePosterPopup() {
+    const posterOverlay = document.getElementById('posterOverlay');
+    if (posterOverlay) {
+      posterOverlay.classList.remove('active');
+      localStorage.setItem('posterClosed', 'true');
+    }
+  }
+
+  // Show poster when page loads (always show)
+  document.addEventListener('DOMContentLoaded', function () {
+    openPosterPopup();
+  });
+
+  // Close poster on ESC key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closePosterPopup();
+    }
+  });
+
+  // Close poster when clicking on overlay background
+  const posterOverlay = document.getElementById('posterOverlay');
+  if (posterOverlay) {
+    posterOverlay.addEventListener('click', function (e) {
+      if (e.target === posterOverlay) {
+        closePosterPopup();
+      }
+    });
+  }
 </script>
 
 </body>
