@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Priyanka Public school – Official Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #004080;
+      --secondary: #f2a900;
+      --light: #f8fafc;
+      --dark: #222;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #f1f5f9;
+      color: var(--dark);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      background: white;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 5%;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 0.9rem;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+
+    .top-bar span {
+      margin-right: 1.5rem;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 5%;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-wrap img {
+      height: 56px;
+      width: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+    }
+
+    .school-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .school-tagline {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    nav {
+      border-top: 1px solid #e5e7eb;
+      border-bottom: 1px solid #e5e7eb;
+      background: #ffffff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      padding: 0.7rem 5%;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      padding-bottom: 0.25rem;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: var(--secondary);
+      color: var(--primary);
+    }
+
+    /* Mobile hamburger */
+    .hamburger {
+      display: none;
+      background: transparent;
+      border: 0;
+      padding: 0.4rem;
+      cursor: pointer;
+      border-radius: 8px;
+      position: absolute;
+      top: 12px;
+      right: 5%;
+      z-index: 50;
+    }
+    .hamburger .bar {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--primary);
+      margin: 4px 0;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .btn-primary .session-badge {
+      font-size: 0.78rem;
+      margin-left: 0.6rem;
+      background: rgba(255,255,255,0.95);
+      padding: 3px 6px;
+      border-radius: 8px;
+      color: #111827;
+      font-weight: 700;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2rem;
+      padding: 2.5rem 5% 2rem;
+      background: linear-gradient(120deg, #0f172a, #1d4ed8);
+      color: white;
+    }
+
+    .hero-text h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-text p {
+      font-size: 0.98rem;
+      max-width: 32rem;
+      color: #e5e7eb;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--secondary);
+      color: #111827;
+      border-color: var(--secondary);
+      font-weight: 600;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #e5e7eb;
+      border-color: #60a5fa;
+    }
+
+    .hero-img {
+      position: relative;
+    }
+
+    .hero-img-main {
+      width: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.6);
+      border: 3px solid rgba(248, 250, 252, 0.8);
+      max-height: 320px;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(15, 23, 42, 0.92);
+      color: #e5e7eb;
+      padding: 0.6rem 0.9rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      max-width: 80%;
+    }
+
+    main {
+      padding: 2.5rem 5% 3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.1fr);
+      gap: 2.2rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section h2 {
+      font-size: 1.45rem;
+      margin-bottom: 0.75rem;
+      color: var(--primary);
+      border-left: 4px solid var(--secondary);
+      padding-left: 0.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      box-shadow: 0 2px 8px rgba(148, 163, 184, 0.3);
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+      color: #111827;
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      color: #4b5563;
+      margin-bottom: 0.3rem;
+    }
+
+    .news-list li,
+    .events-list li {
+      margin-bottom: 0.8rem;
+      font-size: 0.92rem;
+    }
+
+    .news-list span,
+    .events-list span {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1rem;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: #e0f2fe;
+      color: #0369a1;
+      margin-bottom: 0.3rem;
+    }
+
+    .aside-heading {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      color: var(--primary);
+    }
+
+    .notice-list li {
+      font-size: 0.9rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .notice-date {
+      font-size: 0.78rem;
+      color: #6b7280;
+      display: block;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      height: 110px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .map-wrap {
+      margin-top: 0.9rem;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+    }
+
+    iframe {
+      display: block;
+      width: 100%;
+      border: 0;
+    }
+
+      /* Badge for gallery image serial */
+      .gallery-item {
+        position: relative;
+        display: block;
+      }
+
+      .gallery-badge {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        background: var(--secondary);
+        color: #0b1220;
+        font-weight: 700;
+        padding: 0.18rem 0.45rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        box-shadow: 0 2px 6px rgba(2,6,23,0.3);
+        z-index: 10;
+      }
+
+    footer {
+      background: #020617;
+      color: #e5e7eb;
+      padding: 1.5rem 5%;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .footer-top div {
+      max-width: 260px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1e293b;
+      padding-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .brand-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        row-gap: 0.4rem;
+      }
+      .hamburger { display: inline-block; }
+      nav { position: relative; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        right: 5%;
+        top: 72px;
+        background: white;
+        flex-direction: column;
+        gap: 0.4rem;
+        padding: 0.6rem;
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(2,6,23,0.12);
+        min-width: 160px;
+      }
+      header.nav-open .nav-links { display: flex; }
+      .nav-links a { padding: 0.5rem 0.6rem; border-bottom: 0; }
+    }
+
+    .gallery-section {
+      padding: 3rem 5%;
+      background: linear-gradient(135deg, #f8fafc 0%, #eef2f5 100%);
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .gallery-header h1 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .gallery-header p {
+      font-size: 1rem;
+      color: #6b7280;
+      margin-bottom: 0;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      height: 280px;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 64, 128, 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.3s ease;
+      gap: 0.5rem;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 0;
+    }
+
+    /* Lightbox Modal Styles */
+    #lightboxModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    #lightboxModal.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .lightbox-container {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lightbox-image-wrapper {
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    #lightboxImage {
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .lightbox-btn {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .lightbox-btn:hover {
+      background: #e6940f;
+      transform: scale(1.1);
+    }
+
+    .lightbox-btn:active {
+      transform: scale(0.95);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      transform: rotate(90deg);
+    }
+
+    .lightbox-counter {
+      color: white;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      min-width: 100px;
+      text-align: center;
+    }
+
+    .lightbox-date {
+      color: #e5e7eb;
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .lightbox-date strong {
+      color: var(--secondary);
+      font-weight: 600;
+    }
+
+    @media (max-width: 640px) {
+      .hero-text h1 {
+        font-size: 1.8rem;
+      }
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+      }
+      .hero-img-main {
+        max-height: 260px;
+      }
+      .photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+      .gallery-item {
+        height: 200px;
+      }
+      .gallery-header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand-row">
+    <div class="logo-wrap">
+      <img src="logo.png" alt="School Logo" />
+      <div>
+        <div class="school-name">Priyanka Public School</div>
+        <div class="school-tagline">Learning today, leading tomorrow</div>
+      </div>
+    </div>
+      <div>
+      <button class="btn-primary" onclick="window.location.href='applynow.html'">
+        Apply Now
+        <span class="session-badge">Admissions 2026–27</span>
+      </button>
+      <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </div>
+
+  <nav>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="aboutus.html">About us</a>
+      <a href="academics.html">Academics</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+</header>
+
+
+
+
+<section class="gallery-section">
+  <div class="gallery-header">
+    <h1>School Gallery</h1>
+    <p>Explore the vibrant moments and achievements of our school</p>
+  </div>
+
+  <div class="photo-grid">
+    
+    <div class="gallery-item" onclick="openLightbox(0)" data-date="2026-03-15">
+      <img src="logo.png" alt="" />
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox(1)" data-date="2026-02-22">
+      <img src="logo.png" alt="Class Room" />
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox(2)" data-date="2026-03-02">
+      <img src="logo.png" alt="Science Lab" />
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox(3)" data-date="">
+      <img src="" alt="" />
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox(4)" data-date="">
+      <img src="" alt="" />
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox(5)" data-date="">
+      <img src="" alt="" />
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox(6)" data-date="">
+      <img src="" alt="" />
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox(7)" data-date="">
+      <img src="" alt="" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox(8)" data-date="">
+      <img src="" alt="" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox(9)" data-date="2026-03-18">
+      <img src="logo.png" alt="" />
+
+  </div>
+</section>
+
+
+<div id="lightboxModal" onclick="closeLightbox(event)">
+  <div class="lightbox-container" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <div class="lightbox-image-wrapper">
+      <img id="lightboxImage" src="" alt="" />
+    </div>
+    <div class="lightbox-date" id="lightboxDate" style="display:none;">
+      <strong>Uploaded:</strong> <span id="dateDisplay"></span>
+    </div>
+    <div class="lightbox-controls">
+      <button class="lightbox-btn" onclick="prevImage()" title="Previous">❮</button>
+      <span class="lightbox-counter"><span id="currentIndex">1</span> / <span id="totalImages">0</span></span>
+      <button class="lightbox-btn" onclick="nextImage()" title="Next">❯</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <strong>Priyanka Public School</strong><br />
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.querySelector('.hamburger');
+    const header = document.querySelector('header');
+    if (!btn || !header) return;
+    btn.addEventListener('click', function () {
+      const open = header.classList.toggle('nav-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function (e) {
+      if (!header.classList.contains('nav-open')) return;
+      const withinHeader = header.contains(e.target);
+      if (!withinHeader) {
+        header.classList.remove('nav-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        header.classList.remove('nav-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>
+      Learning today, leading tomorrow.
+    </div>
+    <div>
+      <strong>Office timings</strong><br />
+      Monday – Saturday: 8:00 am to 4:00 pm<br />
+      Sunday and public holidays: Closed
+    </div>
+    <div>
+      <strong>Quick links</strong><br />
+      <a href="contact.html">Contact Us</a> ·
+      <a href="academics.html">Academics</a> ·
+      <a href="gallery.html">Gallery</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Priyanka Public School. All rights reserved.</span>
+    <span>Designed By Vantech Software Pvt Ltd.</span>
+  </div>
+</footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const imgs = Array.from(document.querySelectorAll('.gallery-grid img'));
+      const total = imgs.length;
+      imgs.forEach((img, idx) => {
+        // Wrap image in a container for positioning
+        const wrapper = document.createElement('div');
+        wrapper.className = 'gallery-item';
+        img.parentNode.insertBefore(wrapper, img);
+        wrapper.appendChild(img);
+
+        // Compute serial so latest image is 1 (latest = last in DOM)
+        const serial = total - idx;
+
+        const badge = document.createElement('span');
+        badge.className = 'gallery-badge';
+        badge.textContent = serial;
+        wrapper.appendChild(badge);
+      });
+    });
+  </script>
+
+<script>
+  let currentImageIndex = 0;
+  const galleryImages = [];
+
+  // Initialize gallery images array
+  function initializeGallery() {
+    const items = document.querySelectorAll('.gallery-item');
+    galleryImages.length = 0;
+    items.forEach(item => {
+      const img = item.querySelector('img');
+      if (img && img.src) {
+        galleryImages.push({
+          src: img.src,
+          alt: img.alt,
+          date: item.getAttribute('data-date')
+        });
+      }
+    });
+    document.getElementById('totalImages').textContent = galleryImages.length;
+  }
+
+  // Format date in readable format
+  function formatDate(dateString) {
+    if (!dateString) return 'Date not available';
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', options);
+  }
+
+  // Open lightbox with specific image
+  function openLightbox(index) {
+    initializeGallery();
+    if (galleryImages.length === 0) return;
+    
+    currentImageIndex = index;
+    updateLightboxImage();
+    document.getElementById('lightboxModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close lightbox
+  function closeLightbox(event) {
+    if (event && event.target.id !== 'lightboxModal') return;
+    document.getElementById('lightboxModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Update lightbox image
+  function updateLightboxImage() {
+    if (galleryImages.length === 0) return;
+    const image = galleryImages[currentImageIndex];
+    document.getElementById('lightboxImage').src = image.src;
+    document.getElementById('lightboxImage').alt = image.alt;
+    document.getElementById('currentIndex').textContent = currentImageIndex + 1;
+    
+    // Update date display
+    const dateElement = document.getElementById('lightboxDate');
+    const dateDisplay = document.getElementById('dateDisplay');
+    if (image.date) {
+      dateDisplay.textContent = formatDate(image.date);
+      dateElement.style.display = 'block';
+    } else {
+      dateElement.style.display = 'none';
+    }
+  }
+
+  // Next image
+  function nextImage() {
+    if (galleryImages.length === 0) return;
+    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+    updateLightboxImage();
+  }
+
+  // Previous image
+  function prevImage() {
+    if (galleryImages.length === 0) return;
+    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+    updateLightboxImage();
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    const modal = document.getElementById('lightboxModal');
+    if (!modal.classList.contains('active')) return;
+    
+    if (e.key === 'ArrowRight') nextImage();
+    if (e.key === 'ArrowLeft') prevImage();
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+</body>
+</html>

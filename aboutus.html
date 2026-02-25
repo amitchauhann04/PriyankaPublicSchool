@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Priyanka Public school – Official Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #004080;
+      --secondary: #f2a900;
+      --light: #f8fafc;
+      --dark: #222;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #f1f5f9;
+      color: var(--dark);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      background: white;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 5%;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 0.9rem;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+
+    .top-bar span {
+      margin-right: 1.5rem;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 5%;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-wrap img {
+      height: 56px;
+      width: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+    }
+
+    .school-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .school-tagline {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    nav {
+      border-top: 1px solid #e5e7eb;
+      border-bottom: 1px solid #e5e7eb;
+      background: #ffffff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      padding: 0.7rem 5%;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      padding-bottom: 0.25rem;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: var(--secondary);
+      color: var(--primary);
+    }
+
+    /* Mobile hamburger */
+    .hamburger {
+      display: none;
+      background: transparent;
+      border: 0;
+      padding: 0.4rem;
+      cursor: pointer;
+      border-radius: 8px;
+      position: absolute;
+      top: 12px;
+      right: 5%;
+      z-index: 50;
+    }
+    .hamburger .bar {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--primary);
+      margin: 4px 0;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .btn-primary .session-badge {
+      font-size: 0.78rem;
+      margin-left: 0.6rem;
+      background: rgba(255,255,255,0.95);
+      padding: 3px 6px;
+      border-radius: 8px;
+      color: #111827;
+      font-weight: 700;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2rem;
+      padding: 2.5rem 5% 2rem;
+      background: linear-gradient(120deg, #0f172a, #1d4ed8);
+      color: white;
+    }
+
+    .hero-text h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-text p {
+      font-size: 0.98rem;
+      max-width: 32rem;
+      color: #e5e7eb;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--secondary);
+      color: #111827;
+      border-color: var(--secondary);
+      font-weight: 600;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #e5e7eb;
+      border-color: #60a5fa;
+    }
+
+    .hero-img {
+      position: relative;
+    }
+
+    .hero-img-main {
+      width: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.6);
+      border: 3px solid rgba(248, 250, 252, 0.8);
+      max-height: 320px;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(15, 23, 42, 0.92);
+      color: #e5e7eb;
+      padding: 0.6rem 0.9rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      max-width: 80%;
+    }
+
+    main {
+      padding: 2.5rem 5% 3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.1fr);
+      gap: 2.2rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section h2 {
+      font-size: 1.45rem;
+      margin-bottom: 0.75rem;
+      color: var(--primary);
+      border-left: 4px solid var(--secondary);
+      padding-left: 0.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      box-shadow: 0 2px 8px rgba(148, 163, 184, 0.3);
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+      color: #111827;
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      color: #4b5563;
+      margin-bottom: 0.3rem;
+    }
+
+    .news-list li,
+    .events-list li {
+      margin-bottom: 0.8rem;
+      font-size: 0.92rem;
+    }
+
+    .news-list span,
+    .events-list span {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1rem;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: #e0f2fe;
+      color: #0369a1;
+      margin-bottom: 0.3rem;
+    }
+
+    .aside-heading {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      color: var(--primary);
+    }
+
+    .notice-list li {
+      font-size: 0.9rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .notice-date {
+      font-size: 0.78rem;
+      color: #6b7280;
+      display: block;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      height: 110px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .map-wrap {
+      margin-top: 0.9rem;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+    }
+
+    iframe {
+      display: block;
+      width: 100%;
+      border: 0;
+    }
+
+    footer {
+      background: #020617;
+      color: #e5e7eb;
+      padding: 1.5rem 5%;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .footer-top div {
+      max-width: 260px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1e293b;
+      padding-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .brand-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        row-gap: 0.4rem;
+      }
+      .hamburger { display: inline-block; }
+      nav { position: relative; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        right: 5%;
+        top: 72px;
+        background: white;
+        flex-direction: column;
+        gap: 0.4rem;
+        padding: 0.6rem;
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(2,6,23,0.12);
+        min-width: 160px;
+      }
+      header.nav-open .nav-links { display: flex; }
+      .nav-links a { padding: 0.5rem 0.6rem; border-bottom: 0; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-text h1 {
+        font-size: 1.8rem;
+      }
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+      }
+      .hero-img-main {
+        max-height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand-row">
+    <div class="logo-wrap">
+      <img src="logo.png" alt="School Logo" />
+      <div>
+        <div class="school-name">Priyanka Public School</div>
+        <div class="school-tagline">Learning today, leading tomorrow</div>
+      </div>
+    </div>
+    <div>
+      <button class="btn-primary" onclick="window.location.href='applynow.html'">
+        Apply Now
+        <span class="session-badge">Admissions 2026–27</span>
+      </button>
+      <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </div>
+
+  <nav>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="aboutus.html">About us</a>
+      <a href="academics.html">Academics</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div>
+    <section id="about">
+      <h2>About our school</h2>
+      <div class="card">
+        <h3>Priyanka Public School</h3>
+        <p>
+          Priyanka Public School is located in Mankari, Bulandshahr, Uttar Pradesh. We are committed to providing quality education and developing confident, responsible, and compassionate citizens through a balanced blend of academics, sports, and co-curricular activities.
+        </p>
+        <p>
+          Our school is guided by experienced educators who focus on concept clarity, communication skills, and strong values rooted in Indian culture.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <span class="pill">Location</span>
+          <h3>Address</h3>
+          <p>Mankari, Bulandshahr, Uttar Pradesh, India</p>
+        </div>
+        <div class="card">
+          <span class="pill">Contact</span>
+          <h3>Phone</h3>
+          <p>+91-6398467216</p>
+        </div>
+        <div class="card">
+          <span class="pill">Email</span>
+          <h3>Admissions</h3>
+          <p>admission@pps.in</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="academics">
+      <h2>Facilities & Features</h2>
+      <div class="card">
+        <h3>What we offer</h3>
+        <ul class="news-list">
+          <li><span>Smart classrooms</span> with audio-visual teaching aids</li>
+          <li><span>Computer lab</span> with internet connectivity</li>
+          <li><span>Playground</span> and indoor games facilities</li>
+          <li><span>Transport facility</span> on major routes</li>
+          <li><span>CCTV surveillance</span> for student safety</li>
+          <li><span>Separate areas</span> for juniors and seniors</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>School Timings</h3>
+        <ul class="news-list">
+          <li><span>Monday to Saturday:</span> 8:00 AM to 4:00 PM</li>
+          <li><span>Sunday & Holidays:</span> Closed</li>
+          <li><span>Admin Office:</span> 8:00 AM to 3:00 PM on working days</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <aside>
+    <section id="info">
+      <div class="aside-heading">Quick Information</div>
+      <div class="card">
+        <h3>Classes Offered</h3>
+        <ul class="news-list">
+          <li><span>Pre-Primary:</span> Nursery, LKG, UKG</li>
+          <li><span>Primary:</span> Classes I – V</li>
+          <li><span>Middle & Senior:</span> Classes VI – XII</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="map">
+      <div class="aside-heading">Location</div>
+      <div class="card">
+        <p>Conveniently located in Mankari, Bulandshahr district, easily accessible from all major routes in the region.</p>
+        <div class="map-wrap">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3170.0495267332526!2d78.1014622749555!3d28.599214085593964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390b661b73d46bf9%3A0x662b195670336cf5!2sPriyanka%20public%20School!5e1!3m2!1sen!2sin!4v1771134751574!5m2!1sen!2sin"
+            height="220"
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="aside-heading">Contact Details</div>
+      <div class="card">
+        <ul class="notice-list">
+          <li>
+            <span class="notice-date">Phone:</span>
+            +91-6398467216
+          </li>
+          <li>
+            <span class="notice-date">Email:</span>
+            info@pps.in
+          </li>
+          <li>
+            <span class="notice-date">Address:</span>
+            Mankari, Bulandshahr, Uttar Pradesh
+          </li>
+        </ul>
+      </div>
+    </section>
+  </aside>
+</main>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <strong>Priyanka Public School</strong><br />
+      Learning today, leading tomorrow.
+    </div>
+    <div>
+      <strong>Office timings</strong><br />
+      Monday – Saturday: 8:00 am to 4:00 pm<br />
+      Sunday and public holidays: Closed
+    </div>
+    <div>
+      <strong>Quick links</strong><br />
+      <a href="contact.html">Contact Us</a> ·
+      <a href="academics.html">Academics</a> ·
+      <a href="gallery.html">Gallery</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Priyanka Public School. All rights reserved.</span>
+    <span>Designed By Vantech Software Pvt Ltd.</span>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.querySelector('.hamburger');
+    const header = document.querySelector('header');
+    if (!btn || !header) return;
+    btn.addEventListener('click', function () {
+      const open = header.classList.toggle('nav-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function (e) {
+      if (!header.classList.contains('nav-open')) return;
+      const withinHeader = header.contains(e.target);
+      if (!withinHeader) {
+        header.classList.remove('nav-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        header.classList.remove('nav-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
